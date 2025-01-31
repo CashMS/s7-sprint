@@ -29,10 +29,50 @@ describe('Sprint 7 Challenge Learner Tests', () => {
     [5] renders a text that reads "JavaScript is pretty awesome"
     [6] renders a text that includes "javaScript is pretty" (use exact = false)
   */
-  test('you can comment out this test', () => {
-    expect(true).toBe(false)
+  // test('you can comment out this test', () => {
+  //   expect(true).toBe(false)
+  // })
+
+  test('sum function gives the correct value', () => {
+    expect(() => sum()).toThrow('pass valid numbers');
+    expect(() => sum(2, 'seven')).toThrow('pass valid numbers');
+    expect(sum(1, 3)).toBe(4);
+    expect(sum('1', 2)).toBe(3);
+    expect(sum('10', '3')).toBe(13);
+  })
+
+  test('HelloWorld function renders a link that reads "Home"', () => {
+    render(<HelloWorld />);
+    expect(screen.queryByText('Home')).toBeVisible();
+  })
+
+  test('HelloWorld function renders a link that reads "About"', () => {
+    render(<HelloWorld />);
+    expect(screen.queryByText('About')).toBeVisible();
+  })
+
+  test('HelloWorld function renders a link that reads "Blog"', () => {
+    render(<HelloWorld />);
+    expect(screen.queryByText('Blog')).toBeVisible();
+  })
+
+  test('HelloWorld function renders text that reads "The Truth"', () => {
+    render(<HelloWorld />);
+    expect(screen.queryByText('The Truth')).toBeVisible();
+  })
+
+  test('HelloWorld function renders text that reads "JavaScipt is pretty awesome"', () => {
+    render(<HelloWorld />);
+    expect(screen.queryByText("JavaScript is pretty awesome")).toBeVisible();
+  })
+
+  test('HelloWorld function renders text that includes "javaScipt is pretty"', () => {
+    render(<HelloWorld />);
+    expect(screen.getByText('JavaScript is pretty', { exact: false })).toBeInTheDocument();
   })
 })
+
+
 
 function sum(a, b) {
   a = Number(a)
@@ -42,6 +82,8 @@ function sum(a, b) {
   }
   return a + b
 }
+
+
 
 function HelloWorld() {
   return (
